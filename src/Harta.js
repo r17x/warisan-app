@@ -1,4 +1,6 @@
 import React,{ Component } from 'react';
+import TextField from 'material-ui/TextField';
+import Radio from 'material-ui/Radio';	
 
 class Harta extends Component{
 	constructor(props){
@@ -10,17 +12,16 @@ class Harta extends Component{
 	saveAndContinue(e){
 		//e is event
 		e.preventDefault();
-		var harta =  this.refs.harta.value;
-		var utang = this.refs.utang.value;
-		var wasiat =this.refs.wasiat.value;
-		var	tajhis = this.refs.tajhis.value;
-
+		var harta =  this.harta.value;
+		var utang = this.utang.value;
+		var wasiat =this.wasiat.value;
+		var	tajhis = this.tajhis.value;
 		var data = {
-			harta : this.refs.harta.value,
-			utang : this.refs.utang.value,
+			harta : harta,
+			utang : utang,
 			muwarits : this.state.muwarits,
-			tajhis : this.refs.tajhis.value,
-			wasiat : this.refs.wasiat.value,
+			tajhis : tajhis,
+			wasiat : wasiat,
 			alrits: harta-utang-wasiat-tajhis,
 			ayah: false,
 			ibu: false,
@@ -32,7 +33,7 @@ class Harta extends Component{
 	}
 	handleRadio(e){
 		this.setState({
-			[e.target.id]:e.target.value
+			muwarits:e.target.value
 		});
 	}
 	render(){
@@ -43,34 +44,39 @@ class Harta extends Component{
 		var muwarits = this.state.muwarits;
 		return (
 			<div>
-				<div className="form-horizontal">
-					<div className="form-group">
-						<label className="form-label"> Harta : </label>
-						<input type="number" pattern="[0-9]*" inputMode="numeric"	 ref="harta" className="form-control" defaultValue={harta}/>
-					</div>
-					<div className="form-group">
-						<label className="form-label"> Muwarits : </label>
-						<div className="radio-inline">
-							<label><input type="radio" id="muwarits" onClick={this.handleRadio} ref="muwarits" value="L" checked={muwarits==='L'}/> Laki-Laki</label>
-							<label><input type="radio" id="muwarits" onClick={this.handleRadio} ref="muwarits" value="P" checked={muwarits==='P'}/> Perempuan</label>
-						</div>
-					</div>
-					<div className="form-group">
-						<label> Wasiat : </label>
-						<input type="number" pattern="[0-9]*" inputMode="numeric" ref="wasiat" className="form-control" defaultValue={wasiat}/>
-					</div>
-					<div className="form-group">
-						<label> Utang : </label>
-						<input type="number" pattern="[0-9]*" inputMode="numeric" ref="utang" className="form-control" defaultValue={utang} />
-					</div>
-					<div className="form-group">
-						<label> Tajhis : </label>
-						<input type="text" ref="tajhis" className="form-control" defaultValue={tajhis}/>
-					</div>
-					
+			
+			<TextField
+				label="Jumlah Harta"
+			  fullWidth
+			  inputRef={(input) => {this.harta = input;}}
+				defaultValue={harta} type="text"/>
+			<TextField
+				label="Hutang"
+				fullWidth
+				inputRef={(input) => {this.utang = input;}}
+				defaultValue={utang} type="text"/>
+			<TextField
+				label="Wasiat"
+				fullWidth
+				inputRef={(input) => {this.wasiat = input;}}
+				defaultValue={wasiat} type="text"/>
+			<TextField
+				label="Tajhis(Pengurusan Jenasah)"
+				fullWidth
+				inputRef={(input) => {this.tajhis = input;}}
+				defaultValue={tajhis} type="text"/>
+
+			<Radio
+				checked={muwarits==='L'}
+				onClick={this.handleRadio}
+				inputRef={(input) => {this.muwarits = input;}}
+				value="L"
+				muwarits={muwarits}
+				id="muwarits"
+				label="Laki-Laki" aria-label="Laki-Laki" />
+			
 					<button onClick={this.saveAndContinue} className="btn btn-primary pull-right">Lanjut</button>
 				
-				</div>
 			</div>
 		);
 	}

@@ -2,9 +2,10 @@ import React,{ Component } from 'react';
 import Harta from './Harta';
 import Keluarga from './Keluarga';
 import Finish from './Finish';
-
+import Drawer from 'material-ui/Drawer';
+import MobileStepper from 'material-ui/MobileStepper';
+//import MenuItem from 'material-ui/MenuItem';
 //FInalStep
-
 var fieldValues = {
 	harta: 0,
 	utang: 0,
@@ -12,7 +13,6 @@ var fieldValues = {
 	wasiat: 0,
 	tajhis: 0,
 };
-
 class App extends Component {
 	constructor(props){
 		super(props);
@@ -46,15 +46,32 @@ class App extends Component {
 		});
 	}
 	render(){
+const stprs = () => ( <MobileStepper
+        type="progress"
+        steps={4}
+        position="static"
+        activeStep={this.state.step}
+        onBack={this.prevStep}
+        onNext={this.nextStep}
+        disableBack={this.state.step === 0}
+        disableNext={this.state.step === 3}
+
+      /> );
+
 		switch(this.state.step){
 		//`	case 1:
 		//`		return <AccountFields fieldValues={fieldValues}
 		//`													nextStep={this.nextStep}
 		//`													saveValues={this.saveValues}/>
 			case 1:
-				return <Harta fieldValues={fieldValues}
+				return (
+					<div>
+					<Harta fieldValues={fieldValues}
 											saveValues={this.saveValues}
 											nextStep={this.nextStep} />
+								<stprs/>
+					</div>	
+				);
 			case 2:
 				return <Keluarga fieldValues={fieldValues}
 											saveValues={this.saveValues}
