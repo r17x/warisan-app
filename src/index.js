@@ -8,26 +8,25 @@ import registerServiceWorker from './registerServiceWorker';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
 import Grid from 'material-ui/Grid';
-
+import createMuiTheme from 'material-ui/styles/theme';
 //import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { MuiThemeProvider } from 'material-ui/styles';
-
+const theme = createMuiTheme();
 ReactDOM.render(
-	<MuiThemeProvider>
-	<Grid container gutter={16} align="center"  justify="center">
-	<Grid item sm={6} >
-	<AppBar position="static">
+	<MuiThemeProvider theme={theme}>
+	<Grid container align="center"  justify="center">
+	<Grid item xs={12} justify="center">
+	<AppBar className="topbar" position="static">
 	        <Toolbar>
 	          <Typography type="title" color="inherit" align="center">
 	            Applikasi Pembagian Warisan
 	          </Typography>
 	        </Toolbar>
 	      </AppBar>
+	<Grid item justify="center" align="center">
 	<App />
+	</Grid>
 	</Grid>
 	</Grid>
 	</MuiThemeProvider>, document.getElementById('root'));

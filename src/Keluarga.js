@@ -1,46 +1,133 @@
 import React,{ Component } from 'react';
-
+import TextField from 'material-ui/TextField';
+import Checkbox from 'material-ui/Checkbox';
+import MobileStepper from 'material-ui/MobileStepper';
+import { FormControlLabel,FormGroup  } from 'material-ui/Form';
 class Keluarga extends Component{
 	constructor(props){
 		super(props);
-		var pasangan = this.props.muwarits ==='P'? "suami" : "istri";
-		this.state  = {pasangan: pasangan};
+		var pasangan = this.props.fieldValues.muwarits ==='P'? "suami" : "istri";
+		this.state  = {pasangan: pasangan, anak: false};
+		this.saveAndNext = this.saveAndNext.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}	
 	saveAndNext(e){
 		e.preventDefault();
+		console.log(this.ayah.checked);
 		var data = {
-			[this.state.pasangan]: this.refs[this.state.pasangan].value,
-			ayah: this.refs.ayah.value,
-			ibu: this.refs.ibu.value,
-			anak: this.refs.anak.value
+			[this.state.pasangan]: this[this.state.pasangan].checked,
+			ayah: this.ayah ?  this.ayah.checked: null,
+			ibu: this.ibu ? this.ibu.checked  : null,
+			anak: this.anak ?  this.anak.checked  : null,
+			anakL: this.anakL ? parseInt(this.anakL.value)  : null,
+			anakP: this.anakP ? parseInt(this.anakP.value)  : null
+		}
+		if  ( this.state.pasangan ==='istri'){
+			if ( this[this.state.pasangan]){
+				data['j'+this.state.pasangan] = this['j'+this.state.pasangan] ? parseInt(this['j'+this.state.pasangan].value) : null;
+			}
 		}
 		this.props.saveValues(data);
-		console.log(this.state.step);
+		this.props.bagiWarisan();
+		this.props.nextStep();
 	}
+	handleChange=(e) => {
+		var trget = e.target.name;
+		this.setState({
+			[trget] : !this.state[trget]
+		});
+	}
+
 	render(){
 		var pasangan = this.state.pasangan;
+		if ( this.anak ){
+			var alert = <h1> Hello </h1>;
+		}
+ 		const stepper=			<MobileStepper
+        type="progress"
+        steps={4}
+        position="static"
+        activeStep={this.props.step}
+        onBack={this.props.prevStep}
+        onNext={this.saveAndNext}
+        disableBack={this.props.step === 0}
+        disableNext={this.props.step === 3}
+      /> ;
 		return (
 			<div>
-			<div className="checkbox">
-			<label><input type="checkbox" name="ayah" ref="ayah" value="true"/> Ayah Masih Hidup</label>
-			</div>
-			<div className="checkbox">
-			<label><input type="checkbox" name="ibu" ref="ibu" value={true}/> Ibu Masih Hidup</label>
-			</div>
-			<div className="checkbox">
-			<label><input type="checkbox" name={pasangan} ref={pasangan} value={true}/> Punya {pasangan} </label>
-			</div>	
-			<div className="checkbox">
-			<label><input type="checkbox" ref="anak" name="anak" value={true}/> Punya Anak</label>
-			</div>
-			<div class="justify-content-md-center">
-			<button className="btn btn-danger" onClick={this.props.prevStep}>
-			Kembali
-			</button>
-			<button className="btn btn-primary pull-right" onClick={this.saveAndNext.bind(this)}>
-			Lanjut
-			</button>
-			</div>
+			<FormGroup>
+			<FormControlLabel
+				control={
+					<Checkbox
+						inputRef={(input) => {this.ayah=input;}}
+					/>}
+				label="Ayah Masih Hidup "
+			/>
+
+			<FormControlLabel
+				control={
+					<Checkbox
+						value="true"
+						inputRef={(input) => {this.ibu=input;}}
+					/>}
+				label="Ibu Masih Hidup "
+			/>
+
+			<FormControlLabel
+				control={
+					<Checkbox
+						value="true"
+						name={pasangan}
+						onClick={this.handleChange}
+						inputRef={(input) => {this[pasangan]=input;}}
+					/>}
+				label={pasangan+" Masih Hidup "}
+			/>
+		{ this.state.istri ?
+			<TextField
+				label="Jumlah Istri"
+				min={1}
+				max={4}
+				defaultValue={1}
+				fullWidth
+				inputRef={(input) => {this.jistri = input;}}
+			  type="text"/>
+			
+			: '' }
+			<FormControlLabel
+				control={
+					<Checkbox
+						value="true"
+						name="anak"
+						onClick={this.handleChange}
+						inputRef={(input) => {this.anak=input;}}
+					/>}
+				label="Anak Masih Hidup "
+			/>
+			{ this.state.anak ? 
+				<div>
+			<TextField
+				label="Jumlah Anak Laki-Laki"
+				min={0}
+				max={5}
+				defaultValue={0}
+				fullWidth
+				inputRef={(input) => {this.anakL = input;}}
+			  type="text"/>
+
+			<TextField
+				label="Jumlah Anak Perempuan"
+				min={0}
+				max={5}
+				defaultValue={0}
+				fullWidth
+				inputRef={(input) => {this.anakP = input;}}
+				type="text" />	
+				</div>
+			: "" }
+			</FormGroup>
+			 
+			{stepper}
 			</div>
 		);
 	}
