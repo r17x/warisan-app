@@ -3,20 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-intl": "^2.3.0",
+    "react-intl": "^2.4.0",
     "react-scripts": "1.0.10"
   },
   "dependencies": {
-    "big-integer": "^1.6.23",
-    "material-ui": "^1.0.0-beta.3",
-    "material-ui-icons": "^1.0.0-alpha.19",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-money-component": "^1.4.6",
+    "big-integer": "^1.6.28",
+    "material-ui": "^1.0.0-beta.46",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "prop-types": "^15.6.1",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "react-money-component": "^1.5.0",
     "react-money-component-intl": "^1.0.8",
-    "react-number-format": "^2.0.3",
-    "react-router-dom": "^4.1.2"
+    "react-number-format": "^2.0.4",
+    "react-router-dom": "^4.2.2"
   },
   "scripts": {
     "start": "react-scripts start",
