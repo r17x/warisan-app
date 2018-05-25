@@ -5,13 +5,13 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 //import './css/bootstrap.min.css';
 //import './css/navbar.css';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
-import createMuiTheme from 'material-ui/styles/theme';
-//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { MuiThemeProvider } from 'material-ui/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
+import createMuiTheme from '@material-ui/core/styles/theme';
+//import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { MuiThemeProvider } from '@material-ui/core/styles';
 const theme = createMuiTheme();
 ReactDOM.render(
 	<MuiThemeProvider theme={theme}>

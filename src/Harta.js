@@ -1,12 +1,12 @@
 import React,{ Component } from 'react';
-import TextField from 'material-ui/TextField';
-import Radio from 'material-ui/Radio';	
-import { withStyles, createStyleSheet } from 'material-ui/styles';
-import MobileStepper from 'material-ui/MobileStepper';
-import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
-import Snackbar from 'material-ui/Snackbar';
-import IconButton from 'material-ui/IconButton';
-import CloseIcon from 'material-ui-icons/Close';
+import TextField from '@material-ui/core/TextField';
+import Radio from '@material-ui/core/Radio';	
+import { withStyles, createStyleSheet } from '@material-ui/core/styles';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import { FormLabel, FormControl, FormControlLabel } from '@material-ui/core/Form';
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 import BigInt from 'big-integer';
 const styleSheet = createStyleSheet(theme => ({
 	  container: {

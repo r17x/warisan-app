@@ -1,8 +1,8 @@
 import React,{ Component } from 'react';
-import TextField from 'material-ui/TextField';
-import Checkbox from 'material-ui/Checkbox';
-import MobileStepper from 'material-ui/MobileStepper';
-import { FormControlLabel,FormGroup  } from 'material-ui/Form';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import { FormControlLabel,FormGroup  } from '@material-ui/core/Form';
 class Keluarga extends Component{
 	constructor(props){
 		super(props);

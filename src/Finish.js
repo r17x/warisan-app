@@ -1,11 +1,11 @@
 import React,{ Component } from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-import Paper from 'material-ui/Paper';
+import { withStyles, createStyleSheet } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Table, { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core/Table';
+import Paper from '@material-ui/core/Paper';
 import NumberFormat from 'react-number-format';
-import MobileStepper from 'material-ui/MobileStepper';
+import MobileStepper from '@material-ui/core/MobileStepper';
 
 const styleSheet = createStyleSheet(theme => ({
 	  paper: {

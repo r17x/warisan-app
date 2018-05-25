@@ -2,9 +2,9 @@ import React,{ Component } from 'react';
 import Harta from './Harta';
 import Keluarga from './Keluarga';
 import Finish from './Finish';
-import Card from 'material-ui/Card';
-import { FormGroup } from 'material-ui/Form';
-//import MenuItem from 'material-ui/MenuItem';
+import Card from '@material-ui/core/Card';
+import { FormGroup } from '@material-ui/core/Form';
+//import MenuItem from '@material-ui/core/MenuItem';
 //FInalStep
 var fieldValues = {
 	harta: 0,
